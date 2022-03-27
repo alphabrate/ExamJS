@@ -11,7 +11,7 @@
 
 ```html
 <script src="../main.js"></script>
-<script src="https://xchuangc.github.io/examjs/main.js"></script>
+<script src="https://xchuangc.github.io/ExamJS/main.js"></script>
 ```
 
 *Download is recommended*
