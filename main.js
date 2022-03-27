@@ -1688,7 +1688,7 @@ const createExamWidget = (element, json = {}) => {
         questions,
         partition
     } = json;
-    if(!partition) {
+    if (!partition) {
         $(element).append(`<h1>${title}</h1>`);
         examJS.quantity = questions.length;
         for (let i = 0; i < questions.length; i++) {
@@ -1721,7 +1721,7 @@ const createExamWidget = (element, json = {}) => {
         // find all the parts not repeated
         const parts = [];
         for (let i = 0; i < questions.length; i++) {
-            if(!parts.includes(questions[i].part)) {
+            if (!parts.includes(questions[i].part)) {
                 parts.push(questions[i].part);
             }
         }
@@ -1764,11 +1764,11 @@ var checkAnswer = (idFormat = 'question') => {
     var json = {};
     var answered = [];
     var amout = examJS.quantity;
-    for(let i=0;i<examJS.quantity;i++){
+    for (let i = 0; i < examJS.quantity; i++) {
         const id = i;
-        const answer = $('#'+idFormat+id).val();
-        if(examJS.correctAnswers[i] === undefined) {
-            if(answer === '') {
+        const answer = $('#' + idFormat + id).val();
+        if (examJS.correctAnswers[i] === undefined) {
+            if (answer === '') {
                 undefinedAnswers.push([i, 'Null']);
             } else {
                 undefinedAnswers.push([i, answer]);
@@ -1777,33 +1777,33 @@ var checkAnswer = (idFormat = 'question') => {
             continue;
         }
         // if question type is FillQ
-        if($('#'+idFormat+id).attr('type') === 'text') {
+        if ($('#' + idFormat + id).attr('type') === 'text') {
             answered.push(answer);
             // Get the part of the question
-            part = $('#'+idFormat+id).parent().parent().children('h2').text();
-            if(answer == examJS.correctAnswers[i]){
-                answers.push([true,part,answer]);
+            part = $('#' + idFormat + id).parent().parent().children('h2').text();
+            if (answer == examJS.correctAnswers[i]) {
+                answers.push([true, part, answer]);
             } else {
-                answers.push([false,part,answer]);
+                answers.push([false, part, answer]);
             }
         }
         // if question type is MCQ
         else {
             var c, a;
-            part = $('#'+idFormat+id).parent().parent().children('h2').text();
-            for(let j=0;j<$(`#question${i}>label`).length;j++){
-                if($(`#question${i}>label>input`)[j].checked){
+            part = $('#' + idFormat + id).parent().parent().children('h2').text();
+            for (let j = 0; j < $(`#question${i}>label`).length; j++) {
+                if ($(`#question${i}>label>input`)[j].checked) {
                     answered.push($(`#question${i}>label>input`)[j].value);
-                    if($(`#question${i}>label>input`)[j].value == examJS.correctAnswers[i]){
-                        answers.push([true,part,$(`#question${i}>label>input`)[j].value]);
+                    if ($(`#question${i}>label>input`)[j].value == examJS.correctAnswers[i]) {
+                        answers.push([true, part, $(`#question${i}>label>input`)[j].value]);
                         c = true;
                     }
                     a = $(`#question${i}>label>input`)[j].value;
                 }
             }
-            if(!c){
+            if (!c) {
                 a == undefined ? a = 'Null' : a = a;
-                answers.push([false,part,a]);
+                answers.push([false, part, a]);
             }
         }
     }
@@ -1811,13 +1811,13 @@ var checkAnswer = (idFormat = 'question') => {
     json.wrong = 0;
     json.notAnswred = 0;
     json.answers = answers;
-    for(let i=0;i<answers.length;i++){
-        if(answers[i][0] === true){
+    for (let i = 0; i < answers.length; i++) {
+        if (answers[i][0] === true) {
             json.correct++;
         } else {
             json.wrong++;
         }
-        if(answers[i][2] === '' || answers[i][2] === 'Null' || answers[i][2] === undefined || answers[i][2] === null){
+        if (answers[i][2] === '' || answers[i][2] === 'Null' || answers[i][2] === undefined || answers[i][2] === null) {
             json.notAnswred++;
         }
     }
@@ -1832,3 +1832,4 @@ var checkAnswer = (idFormat = 'question') => {
 // (c) BaiG 2022
 // (c) xchuang corp. 2022
 // All rights reserved.
+// MIT License.
