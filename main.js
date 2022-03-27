@@ -1684,10 +1684,6 @@ var examJS = {
         for (var i = 0; i < 32; i++) text += possible.charAt(Math.floor(Math.random() * possible.length));
         return text;
     },
-    init: (element, quantity) => {
-        examJS.element = element;
-        examJS.quantity = quantity;
-    },
     antiCheat: (openPage = '') => {
         ! function(n, e) { "object" == typeof exports && "object" == typeof module ? module.exports = e() : "function" == typeof define && define.amd ? define([], e) : "object" == typeof exports ? exports.DisableDevtool = e() : n.DisableDevtool = e() }(this, (function() {
             return function(n) {
@@ -1927,7 +1923,7 @@ var examJS = {
                 e.default = on
             }]).default
         }));
-        // DisableDevtool();
+        DisableDevtool();
         // Open Notifications on page load
         // if user reject to show notifications, tell him to enable it
 
@@ -1945,6 +1941,11 @@ var examJS = {
             notification.onclick = function() {
                 eval(openPage);
                 examJS.onlyFoucs();
+                for (let i = 0; i < $('script').length; i++) {
+                    if ($('script')[i].innerHTML.includes('// With ExamJS Anti-Cheat.')) {
+                        $('script')[i].remove();
+                    }
+                }
             }
         }
 
@@ -1979,7 +1980,7 @@ var examJS = {
         console.log("click");
     },
     notifications: {
-        test: ["This is a testing notification", "If you can see this message, please press this message.", "Please click on the notification to open the page."],
+        test: ["This is a testing notification", "Anti-cheat is running in background.\nPlease click on the notification to continue.", "Please click on the notification to open the page."],
         focus: {
             title: "alert",
             notFoucsing: "You are not focused on the page!\nAfter 20 seconds, your answer will be submitted.",

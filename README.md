@@ -74,7 +74,7 @@
 ```js
 FillQuestionElement = `<div id="t[id]"><p>[question]</p><input type="[type]" placeholder="[prompt]" id="question[id]"/>[required]<hr></div>`;
 MCQuestionElement = `<div id="t[id]"><p>[question]</p><span id="question[id]"></span>[required]<hr></div>`;
-submitElement = `<div><button type="submit" onclick="location.href='after.html?'+examJS.check()">Submit</button></div>`;
+submitElement = `<div><button type="submit" onclick="ab();">Submit</button></div>`;
 ```
 
 ### Functions
@@ -83,6 +83,22 @@ submitElement = `<div><button type="submit" onclick="location.href='after.html?'
 
 `examJS.check();`
 > Check the answer and return a string.
+
+`examJS.token();`
+> Generate a token randomly.
+
+`examJS.antiCheat(e);`
+> Anti-cheat function.
+> > It will disable the user to open devtools.
+> > If user leave the page. There will be a notification.
+> > If user don't come back in 20s, the answer will be submitted.
+> > For prevent the user have some method to open the devtools and see the answer, add: `// With ExamJS Anti-Cheat.` to the `<script>` tag you want to hide. It will be removed.
+> ## e: Event after running the anti-cheat function. (Normally, you should put your `createExamWidget()` function in it.)
+
+`examJS.onlyFoucs();`
+> Only foucs on the page.
+> > If user leave the page. There will be a notification.
+> > If user don't come back in 20s, the answer will be submitted.
 
 ### Recommended CSS
 

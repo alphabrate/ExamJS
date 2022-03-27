@@ -68,16 +68,16 @@ function chart(title, data, type = 'pie') {
 }
 
 var start = () => {
-    document.getElementById('name').innerHTML = '姓名：' + data.noAnswerQuestions[0][1] + '<br>班级：' + data.noAnswerQuestions[1][1];
-    chart(`${getParts().length}各部分分数占比图`, getParts());
-    chart(`正确百分比图`, [
-        ['正确', data.correct],
-        ['错误', data.quantity - data.correct]
+    document.getElementById('name').innerHTML = 'Name: ' + data.noCorrectAnswerQuestions[0][1] + '<br>Age: ' + data.noCorrectAnswerQuestions[1][1];
+    chart(`The proportion of each part`, getParts());
+    chart(`Right and wrong ratio chart`, [
+        ['Correct', data.correct],
+        ['Wrong', data.quantity - data.correct]
     ]);
-    $('#c1').append(`正确百分比：${data.percentage}`);
+    $('#c1').append(`Correct %: ${data.correctPercentage}`);
     $('#c1').append(`<br>`);
-    $('#c1').append(`正确个数：${data.correct}/${data.quantity}`);
+    $('#c1').append(`Correct Amount: ${data.correct}/${data.quantity}`);
     $('#c1').append(`<br>`);
-    $('#c1').append(`未答题数：${data.notAnswred}`);
+    $('#c1').append(`Non Answered: ${data.notAnswred}`);
     $('#c1').append(`<br>`);
 }
