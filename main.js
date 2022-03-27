@@ -1830,6 +1830,6 @@ var checkAnswer = (idFormat = 'question') => {
 }
 
 // (c) BaiG 2022
-// (c) xchuang corp. 2022
+// (c) xchuang corp. 2022   
 // All rights reserved.
 // MIT License.
