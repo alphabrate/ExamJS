@@ -15,8 +15,8 @@
     <script>
         FillQuestionElement = `<div id="t[id]"><p>[question]</p><input type="[type]" placeholder="[prompt]" id="question[id]"/>[required]<hr></div>`;
         MCQuestionElement = `<div id="t[id]"><p>[question]</p><span id="question[id]"></span>[required]<hr></div>`;
-        submitElement = `<div><button type="submit" onclick="location.href='after.html?'+examJS.check()">Submit</button></div>`;
-        createExamWidget('.exam', {
+        submitElement = `<div><button type="submit" onclick="ab();">Submit</button></div>`;
+        examJS.antiCheat(`createExamWidget('.exam', {
             title: 'Test Questions',
             questions: [{
                 type: 'text',
@@ -91,7 +91,14 @@
                 part: 'TFU'
             }],
             partition: true
-        });
+        });`);
+    </script>
+    <script>
+        var ab = () => {
+            var a = examJS.token();
+            localStorage.setItem(a, examJS.check());
+            location.href = 'after.html?' + a;
+        }
     </script>
 </body>
 
