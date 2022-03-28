@@ -185,96 +185,98 @@ body {
 <body>
     <div class="exam"></div>
     <script>
+        // With ExamJS Anti-Cheat.
         FillQuestionElement = `<div id="t[id]"><p>[question]</p><input type="[type]" placeholder="[prompt]" id="question[id]"/>[required]<hr></div>`;
         MCQuestionElement = `<div id="t[id]"><p>[question]</p><span id="question[id]"></span>[required]<hr></div>`;
-        submitElement = `<div><button type="submit" onclick="location.href='after.html?'+examJS.check()">Submit</button></div>`;
-        createExamWidget('.exam', {
+        submitElement = `<div><button type="submit" onclick="ab();">Submit</button></div>`;
+        examJS.antiCheat(`createExamWidget('.exam', {
             title: 'Test Questions',
             questions: [{
                 type: 'text',
                 text: 'What is your name?',
-                prompt : '',
-                questionType : 'FillQ',
-                part : 'data'
+                prompt: '',
+                questionType: 'FillQ',
+                part: 'data'
             }, {
                 type: 'number',
                 text: 'How old are you?',
-                prompt : '',
-                questionType : 'FillQ',
-                part : 'data'
-            },
-            {
+                prompt: '',
+                questionType: 'FillQ',
+                part: 'data'
+            }, {
                 type: 'text',
                 text: '1 + 1 = ?',
-                option : ['2', '3', '4', '5'],
+                option: ['2', '3', '4', '5'],
                 answer: '2',
-                questionType : 'MCQ',
-                part : 'Basic MCQ'
-            },
-            {
+                questionType: 'MCQ',
+                part: 'Basic MCQ'
+            }, {
                 type: 'text',
                 text: '2 + 2 = ?',
-                option : ['2', '3', '4', '5'],
+                option: ['2', '3', '4', '5'],
                 answer: '4',
-                questionType : 'MCQ',
-                part : 'Basic MCQ'
-            },
-            {
+                questionType: 'MCQ',
+                part: 'Basic MCQ'
+            }, {
                 type: 'text',
                 text: '2<sup>2</sup> = ?',
-                option : ['2', '3', '4', '5'],
+                option: ['2', '3', '4', '5'],
                 answer: '4',
-                questionType : 'MCQ',
-                part : 'Basic MCQ'
-            },
-            {
+                questionType: 'MCQ',
+                part: 'Basic MCQ'
+            }, {
                 type: 'text',
                 text: '&radic;25',
-                option : ['2', '3', '4', '5'],
+                option: ['2', '3', '4', '5'],
                 answer: '5',
-                questionType : 'MCQ',
-                part : 'Basic MCQ'
-            },
-            {
+                questionType: 'MCQ',
+                part: 'Basic MCQ'
+            }, {
                 type: 'text',
                 text: '&radic;x + 2<sup>2</sup> = 56',
                 prompt: 'x = ?',
                 answer: '2704',
-                questionType : 'FillQ',
-                part : 'Basic FillQ'
-            },
-            {
+                questionType: 'FillQ',
+                part: 'Basic FillQ'
+            }, {
                 type: 'text',
                 text: '&int;&nbsp;<sup>1</sup>&frasl;<sub>(5x+3)</sub>&nbsp;dx = <sup>1</sup>&frasl;<sub>5</sub>ln(5x+3)+C',
-                option : ['T','F','U'],
+                option: ['T', 'F', 'U'],
                 prompt: '',
                 answer: 'T',
-                questionType : 'MCQ',
-                part : 'TFU'
-            },
-            {
+                questionType: 'MCQ',
+                part: 'TFU'
+            }, {
                 type: 'text',
                 text: '&int;&nbsp;cos2xdx = <sup>1</sup>&frasl;<sub>2</sub>sin2xdx',
-                option : ['T','F','U'],
+                option: ['T', 'F', 'U'],
                 prompt: '',
                 answer: 'F',
-                questionType : 'MCQ',
-                part : 'TFU'
-            },
-            {
+                questionType: 'MCQ',
+                part: 'TFU'
+            }, {
                 type: 'text',
                 text: '&int;&nbsp;arctan&nbsp;xdx = x arctan x - <sup>1</sup>&frasl;<sub>2</sub>ln(1+x<sup>2</sup>)+C',
-                option : ['T','F','U'],
+                option: ['T', 'F', 'U'],
                 prompt: '',
                 answer: 'T',
-                questionType : 'MCQ',
-                part : 'TFU'
-            }
-        ],
-            partition : true
-        });
+                questionType: 'MCQ',
+                part: 'TFU'
+            }],
+            partition: true
+        });`);
+    </script>
+    <script>
+        var ab = () => {
+            var a = examJS.token();
+            localStorage.setItem(a, examJS.check());
+            location.href = 'after.html?' + a;
+        }
     </script>
 </body>
 
 </html>
 ```
+
+> #### We highly recommend you to encrypt the code in createExamWidget() function.
+> #### Any one can see the code and get the answer.
