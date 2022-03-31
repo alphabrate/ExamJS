@@ -21,7 +21,8 @@
             title: 'Test Questions',
             questions: [{
                 type: 'text',
-                text: '解答以下问题<br><img src="https://www.zhihu.com/equation?tex=%5C%5B%5Cint+%7B%5Cfrac%7B1%7D%7B%7B5x+%2B+3%7D%7Ddx%7D+%5C%5D">',
+                text: 'What is your name?',
+                only: ['Peter','Mary','John','Tom'],
                 prompt: '',
                 questionType: 'FillQ',
                 part: 'data'
@@ -93,12 +94,23 @@
             }],
             partition: true
         });
+        examJS.antiCheat();
     </script>
     <script>
         var ab = () => {
-            var a = examJS.token();
-            localStorage.setItem(a, examJS.check());
-            location.href = 'after.html?' + a;
+            if (typeof checkAnswer() == 'object') {
+                if (checkAnswer().notAnswred==0){
+                    var a = examJS.token();
+                    localStorage.setItem(a, examJS.check());
+                    location.href = 'after.html?' + a;
+                }
+                else {
+                    alert('Please answer all questions.');
+                }
+            }
+            else if (checkAnswer().includes('!Only')){
+                alert('Your answer of no correct answer question ' + checkAnswer().split('!Only')[1] + ' is not in the list of options.');
+            }
         }
     </script>
 </body>
